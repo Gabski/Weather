@@ -48,7 +48,10 @@ class Location
 
     public function setCoordinates($lat, $lon)
     {
-        $this->coordinates = [$lat, $lon];
+        $this->coordinates = [
+            'lat' => $lat,
+            'lon' => $lon,
+        ];
         return $this;
     }
 }

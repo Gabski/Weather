@@ -12,7 +12,6 @@ class OpenStreetMap
         $context = stream_context_create($opts);
         $response = file_get_contents($url, false, $context);
         $data = json_decode($response, true);
-
         if (!empty($data)) {
 
             $location
