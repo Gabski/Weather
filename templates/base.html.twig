@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pl">
+
+<head>
+    <title>{% block title %}Welcome to the SpaceBar{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {% block stylesheets %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {% endblock %}
+</head>
+
+<body>
+        <main>
+        {% block body %}{% endblock %}
+    </main>
+
+    {% block javascripts %}
+    <script src="{{ asset('js/app.js') }}"></script>
+    {% endblock %}
+</body>
+
+</html>
