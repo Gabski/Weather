@@ -6,7 +6,8 @@ class Location
     protected $city;
     protected $country;
     protected $description;
-    protected $coordinates = [0, 0];
+    protected $coordinates = [];
+    protected $forecasts = [];
 
     public function getCountry()
     {
@@ -53,5 +54,25 @@ class Location
             'lon' => $lon,
         ];
         return $this;
+    }
+
+    public function getForecasts()
+    {
+        return $this->forecasts;
+    }
+
+    public function addForecast(string $name, string $forecast)
+    {
+        if (!empty($this->coordinates)) {
+            $newF = new $forecast($this);
+
+            $this->forecasts[] = [
+                'name' => $name,
+                'data' => $newF->result(),
+            ];
+            return true;
+        } else {
+            return false;
+        }
     }
 }

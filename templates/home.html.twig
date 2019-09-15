@@ -6,6 +6,31 @@
 
 {{location.description}}
 
+<table>
+<tr>
+<th>Forecast data</th>
+<th>Temp</th>
+<th>min Temp</th>
+<th>max Temp</th>
+</tr>
+{% for forecast in location.forecasts %}
+<tr>
+<td>{{ forecast.name }}</td>
+<td>{{ forecast.data.temp_min }}</td>
+<td>{{ forecast.data.temp_max }}</td>
+<td>{{ forecast.data.temp }}</td>
+</tr>
+
+{% else %}
+   No forecasts
+{% endfor %}
+
+</table>
+
+
+
+
+
 {{ form(form) }}
 
 {% endblock %}
