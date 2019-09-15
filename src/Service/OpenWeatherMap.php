@@ -2,9 +2,15 @@
 namespace App\Service;
 
 use App\Entity\Forecast;
+use App\Interfaces\iWeatherApi;
 
-class OpenWeatherMap extends WeatherService
+class OpenWeatherMap extends WeatherService implements iWeatherApi
 {
+
+    /* TODO
+     * klucz API do configa
+     * Wyjątki i błędy
+     */
 
     public function apiWork()
     {
