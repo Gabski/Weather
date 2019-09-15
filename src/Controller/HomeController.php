@@ -3,9 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Location;
-use App\Entity\OpenWeatherMap;
 use App\Form\LocationType;
 use App\Service\OpenStreetMap;
+use App\Service\OpenWeatherMap;
+use App\Service\Weatherbit;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +27,7 @@ class HomeController extends AbstractController
             $location = $osm->find($location);
 
             $location->addForecast("Open Weather Map", OpenWeatherMap::class);
-
+            $location->addForecast("Weatherbit", Weatherbit::class);
         }
 
         return $this->render('home.html.twig', [

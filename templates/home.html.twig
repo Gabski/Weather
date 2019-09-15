@@ -4,7 +4,12 @@
 
 <h1>Home Page</h1>
 
-{{location.description}}
+
+{% if location.ready %}
+
+<p><b>Forecast for:</b> {{location.description}}</p>
+{{ location.averageTemp }}
+
 
 <table>
 <tr>
@@ -16,8 +21,8 @@
 {% for forecast in location.forecasts %}
 <tr>
 <td>{{ forecast.name }}</td>
-<td>{{ forecast.data.temp_min }}</td>
-<td>{{ forecast.data.temp_max }}</td>
+<td>{{ forecast.data.tempMin }}</td>
+<td>{{ forecast.data.tempMax }}</td>
 <td>{{ forecast.data.temp }}</td>
 </tr>
 
@@ -27,7 +32,11 @@
 
 </table>
 
+{% else %}
 
+<p>No forecasts for your location. Please write correct city and country name.</p>
+
+{% endif %}
 
 
 

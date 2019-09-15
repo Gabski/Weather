@@ -7,7 +7,10 @@ class OpenStreetMap
 {
     public function find(Location $location)
     {
-        $url = sprintf("https://nominatim.openstreetmap.org/search?format=json&limit=1&q=%s,%s", $location->getCity(), $location->getCountry());
+        $city = str_replace(' ', '+', $location->getCity());
+        $country = str_replace(' ', '+', $location->getCountry());
+
+        $url = sprintf("https://nominatim.openstreetmap.org/search?format=json&limit=1&q=%s,%s", $city, $country);
         $opts = array('http' => array('header' => "User-Agent: GeoAddressScript 3.7.6\r\n"));
         $context = stream_context_create($opts);
         $response = file_get_contents($url, false, $context);

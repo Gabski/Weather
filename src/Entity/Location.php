@@ -61,6 +61,11 @@ class Location
         return $this->forecasts;
     }
 
+    public function isReady()
+    {
+        return !empty($this->coordinates);
+    }
+
     public function addForecast(string $name, string $forecast)
     {
         if (!empty($this->coordinates)) {
@@ -71,8 +76,23 @@ class Location
                 'data' => $newF->result(),
             ];
             return true;
-        } else {
-            return false;
         }
+
+        return false;
+    }
+
+    public function getAverageTemp()
+    {
+        if (!empty($this->coordinates)) {
+            $num = count($this->coordinates);
+            $sum = 0;
+            foreach ($this->forecasts as $f) {
+                $sum += $f['data']->getTemp();
+            }
+
+            return $num === 0 ? $sum : $sum / $num;
+        }
+
+        return 0;
     }
 }
