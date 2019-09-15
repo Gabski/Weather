@@ -84,12 +84,11 @@ class Location
     public function getAverageTemp()
     {
         if (!empty($this->coordinates)) {
-            $num = count($this->coordinates);
+            $num = count($this->forecasts);
             $sum = 0;
             foreach ($this->forecasts as $f) {
                 $sum += $f['data']->getTemp();
             }
-
             return $num === 0 ? $sum : $sum / $num;
         }
 

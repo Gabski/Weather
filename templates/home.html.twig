@@ -2,44 +2,50 @@
 
 {% block body %}
 
-<h1>Home Page</h1>
 
 
-{% if location.ready %}
+<div class="form">
 
-<p><b>Forecast for:</b> {{location.description}}</p>
-{{ location.averageTemp }}
-
-
-<table>
-<tr>
-<th>Forecast data</th>
-<th>Temp</th>
-<th>min Temp</th>
-<th>max Temp</th>
-</tr>
-{% for forecast in location.forecasts %}
-<tr>
-<td>{{ forecast.name }}</td>
-<td>{{ forecast.data.tempMin }}</td>
-<td>{{ forecast.data.tempMax }}</td>
-<td>{{ forecast.data.temp }}</td>
-</tr>
-
-{% else %}
-   No forecasts
-{% endfor %}
-
-</table>
-
-{% else %}
-
-<p>No forecasts for your location. Please write correct city and country name.</p>
-
-{% endif %}
+    <h1>what's the weather like today in...</h1>
+    {{ form(form) }}
+</div>
 
 
+<div class="forecast">
 
-{{ form(form) }}
+    {% if location.ready %}
+
+    <div>{{location.description}}</div>
+    <div class="temp">{{ location.averageTemp|number_format(2, '.', ',') }}C°</div>
+
+    <table class="table">
+        <tr>
+            <th>Forecast data</th>
+            <th>C°</th>
+            <th>min C°</th>
+            <th>max C°</th>
+            <th>hPa<th>
+        </tr>
+        {% for forecast in location.forecasts %}
+        <tr>
+            <td>{{ forecast.name }}</td>
+            <td>{{ forecast.data.tempMin }}</td>
+            <td>{{ forecast.data.tempMax }}</td>
+            <td>{{ forecast.data.temp }}</td>
+            <td>{{ forecast.data.press }}</td>
+        </tr>
+        {% else %}
+        No forecasts
+        {% endfor %}
+    </table>
+
+
+    {% else %}
+
+    <p>No forecasts for your location. Please write correct city and country name.</p>
+
+    {% endif %}
+
+</div>
 
 {% endblock %}
